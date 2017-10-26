@@ -6,7 +6,6 @@ endfor
 imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
 
 "自動インデント
-set autoindent
 set smartindent
 
 "色設定
@@ -14,7 +13,8 @@ set background=dark
 colorscheme moneyforward
 
 "tab
-:set tabstop=2
+set softtabstop=2
+set tabstop=2
 
 "indentLine
 set list listchars=tab:\¦\ 
