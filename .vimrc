@@ -7,7 +7,7 @@ imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
 
 "自動インデント
 set smartindent
-
+set shiftwidth=2
 "色設定
 set background=dark
 colorscheme moneyforward
@@ -28,27 +28,27 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/home/seisyo58/.vim/bundle/.//repos/github.com/Shougo/dein.vim
+set runtimepath+=~/dotfiles/.vim/bundle/.//repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/home/seisyo58/.vim/bundle/./')
-	call dein#begin('/home/seisyo58/.vim/bundle/./')
+if dein#load_state('~/dotfiles/.vim/bundle/./')
+				call dein#begin('~/dotfiles/.vim/bundle/./')
 
-	" Let dein manage dein
-	" Required:
-	call dein#add('/home/seisyo58/.vim/bundle/.//repos/github.com/Shougo/dein.vim')
+				" Let dein manage dein
+				" Required:
+				call dein#add('~/dotfiles/.vim/bundle/.//repos/github.com/Shougo/dein.vim')
 
-	" Add or remove your plugins here:
-	call dein#add('Shougo/neosnippet.vim')
-	call dein#add('Shougo/neosnippet-snippets')
-	call dein#add('Yggdroot/indentLine')
+				" Add or remove your plugins here:
+				call dein#add('Shougo/neosnippet.vim')
+				call dein#add('Shougo/neosnippet-snippets')
+				call dein#add('Yggdroot/indentLine')
 
-	" You can specify revision/branch/tag.
-	call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+				" You can specify revision/branch/tag.
+				call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
-	" Required:
-	call dein#end()
-	call dein#save_state()
+				" Required:
+				call dein#end()
+				call dein#save_state()
 endif
 
 " Required:
