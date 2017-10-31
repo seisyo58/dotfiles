@@ -28,15 +28,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=~/dotfiles/.vim/bundle/.//repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.vim/bundle/.//repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('~/dotfiles/.vim/bundle/./')
-				call dein#begin('~/dotfiles/.vim/bundle/./')
+if dein#load_state('~/.vim/bundle/./')
+				call dein#begin('~/.vim/bundle/./')
 
 				" Let dein manage dein
 				" Required:
-				call dein#add('~/dotfiles/.vim/bundle/.//repos/github.com/Shougo/dein.vim')
+				call dein#add('~/.vim/bundle/.//repos/github.com/Shougo/dein.vim')
 
 				" Add or remove your plugins here:
 				call dein#add('Shougo/neosnippet.vim')
