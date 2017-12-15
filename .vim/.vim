@@ -1,1 +1,0 @@
-/home/seisyo58/dotfiles/.vim

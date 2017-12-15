@@ -1,5 +1,5 @@
 #! /bin/sh
 
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/dotfiles/.vim ~/.vim
-ln -sf ~/dotfiles/.vimshell ~/.vimshell
+ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/vim/.vim ~/.vim
+#ln -sf ~/dotfiles/bundle ~/.vim/
