@@ -19,6 +19,10 @@ set tabstop=2
 set number
 set cursorline
 
+"クリップボード
+set clipboard+=unnamed
+set clipboard+=autoselect
+
 " dein setup
 let s:dein_dir = $HOME . '/.vim/bundle'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -34,8 +38,8 @@ let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 		call dein#begin(s:dein_dir)
 		" Load and cached toml
 		" all plugins listed in toml
-		"call dein#add('Shougo/neosnippet.vim')
-		"call dein#add('Shougo/neosnippet-snippets')
+		call dein#add('Shougo/neosnippet.vim')
+		call dein#add('Shougo/neosnippet-snippets')
 		call dein#add('Yggdroot/indentLine')
 		call dein#end()
 		call dein#save_state()

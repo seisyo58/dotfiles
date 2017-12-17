@@ -1,119 +1,143 @@
-indentLine
+Neosnippet
 ==========
 
-This plugin is used for displaying thin vertical lines at each indentation level for code indented with spaces. For code indented with tabs I think there is no need to support it, because you can use `:set list lcs=tab:\|\ (here is a space)`.
+The Neosnippet plug-In adds snippet support to Vim. Snippets are
+small templates for commonly used code that you can fill in on the
+fly. To use snippets can increase your productivity in Vim a lot.
+The functionality of this plug-in is quite similar to plug-ins like
+snipMate.vim or snippetsEmu.vim. But since you can choose snippets with the
+[neocomplcache](https://github.com/Shougo/neocomplcache.vim) /
+[neocomplete](https://github.com/Shougo/neocomplete.vim) interface, you might
+have less trouble using them, because you do not have to remember each snippet
+name.
 
-## Requirements
-This plugin takes advantage of the newly provided `conceal` feature in Vim 7.3, so this plugin will not work with lower versions of Vim.
+Installation
+------------
 
-## Installation
-To install the plugin just put the plugin files in your `~/.vim` (Linux) or `~/vimfiles` (Windows).
+To install neosnippet and other Vim plug-ins it is recommended to use one of the
+popular package managers for Vim, rather than installing by drag and drop all
+required files into your `.vim` folder.
 
-If you use a plugin manager you can put the whole directory into your `~/.vim/bundle/` directory ([Pathogen][pathogen]) or add the line `Plugin 'Yggdroot/indentLine'` to your `.vimrc` ([Vundle][vundle]).
+Notes:
 
-## Customization
-To apply customization, apply the variable definitions to your `.vimrc` file.
+* Vim 7.4 or above is needed.
 
-**Change Character Color**
+* Default snippets files are available in:
+  [neosnippet-snippets](https://github.com/Shougo/neosnippet-snippets)
+* Installing default snippets is optional. If choose not to install them,
+  you must deactivate them with `g:neosnippet#disable_runtime_snippets`.
+* neocomplcache/neocomplete is not required to use neosnippet, but it's highly recommended.
+* Extra snippets files can be found in:
+  [vim-snippets](https://github.com/honza/vim-snippets).
 
-indentLine will overwrite 'conceal' color with grey by default. If you want to highlight conceal color with your colorscheme, disable by:
+### Manual (not recommended)
+
+1. Install the
+   [neocomplcache](https://github.com/Shougo/neocomplcache.vim)/
+   [neocomplete](https://github.com/Shougo/neocomplete.vim) and
+   [neosnippet-snippets](https://github.com/Shougo/neosnippet-snippets)
+   first.
+2. Put files in your Vim directory (usually `~/.vim/` or
+   `%PROGRAMFILES%/Vim/vimfiles` on Windows).
+
+### Vundle
+
+1. Setup the [vundle](https://github.com/gmarik/vundle) package manager
+2. Set the bundles for [neocomplcache](https://github.com/Shougo/neocomplcache)
+   or [neocomplete](https://github.com/Shougo/neocomplete.vim)
+   And [neosnippet](https://github.com/Shougo/neosnippet)
+   And [neosnippet-snippets](https://github.com/Shougo/neosnippet-snippets)
+
+    ```vim
+    Plugin 'Shougo/neocomplcache'
+    or
+    Plugin 'Shougo/neocomplete'
+
+    Plugin 'Shougo/neosnippet'
+    Plugin 'Shougo/neosnippet-snippets'
+    ```
+
+3. Open up Vim and start installation with `:PluginInstall`
+
+### Neobundle
+
+1. Setup the [neobundle](https://github.com/Shougo/neobundle.vim) package manager
+2. Set the bundles for [neocomplcache](https://github.com/Shougo/neocomplcache)
+   or [neocomplete](https://github.com/Shougo/neocomplete.vim)
+   And [neosnippet](https://github.com/Shougo/neosnippet)
+   And [neosnippet-snippets](https://github.com/Shougo/neosnippet-snippets)
+
+    ```vim
+    NeoBundle 'Shougo/neocomplcache'
+    or
+    NeoBundle 'Shougo/neocomplete'
+
+    NeoBundle 'Shougo/neosnippet'
+    NeoBundle 'Shougo/neosnippet-snippets'
+    ```
+
+3. Open up Vim and start installation with `:NeoBundleInstall`
+
+### VAM (vim-addon-manager)
+
+1. Setup the [vim-addon-manager](https://github.com/MarcWeber/vim-addon-manager)
+   package manager.
+2. Add `neosnippet` to the list of addons in your vimrc:
+
+    ```vim
+    call vam#ActivateAddons(['neosnippet', 'neosnippet-snippets'])
+    ```
+
+    . Installation will start automatically when you open vim next time.
+
+Configuration
+-------------
+
+This is an example `~/.vimrc` configuration for Neosnippet. It is assumed you
+already have Neocomplcache configured. With the settings of the example, you
+can use the following keys:
+
+* `C-k` to select-and-expand a snippet from the Neocomplcache popup (Use `C-n`
+  and `C-p` to select it). `C-k` can also be used to jump to the next field in
+  the snippet.
+* `Tab` to select the next field to fill in the snippet.
+
+```vim
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 ```
-let g:indentLine_setColors = 0
+
+If you want to use a different collection of snippets than the
+built-in ones, then you can set a path to the snippets with
+the `g:neosnippet#snippets_directory` variable (e.g [Honza's
+Snippets](https://github.com/honza/vim-snippets))
+
+But if you enable `g:neosnippet#enable_snipmate_compatibility`, neosnippet will
+load snipMate snippets from runtime path automatically.
+
+```vim
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 ```
 
-Or you can customize conceal color by: 
-```
-" Vim
-let g:indentLine_color_term = 239
-
-" GVim
-let g:indentLine_color_gui = '#A4E57E'
-
-" none X terminal
-let g:indentLine_color_tty_light = 7 " (default: 4)
-let g:indentLine_color_dark = 1 " (default: 2)
-
-" Background (Vim, GVim)
-let g:indentLine_bgcolor_term = 202
-let g:indentLine_bgcolor_gui = '#FF5F00'
-```
-
-**Change Indent Char**
-
-Vim and GVim
-```
-let g:indentLine_char = 'c'
-```
-where `'c'` can be any ASCII character. You can also use one of `¦`, `┆`, `│`, `⎸`, or `▏` to display more beautiful lines. However, these characters will only work with files whose encoding is UTF-8.
-
-**Change Conceal Behaviour**
-
-This plugin enables the Vim `conceal` feature which automatically hides stretches of text based on syntax highlighting. This setting will apply to all syntax items.
-
-For example, users utilizing the built in json.vim syntax file will no longer see quotation marks in their JSON files.
-
-indentLine will overwrite your "concealcursor" and "conceallevel" with default value:
-
-```
-let g:indentLine_concealcursor = 'inc'
-let g:indentLine_conceallevel = 2
-```
-
-You can customize these settings, but the plugin will not function if `conceallevel` is not set to 1 or 2.
-
-If you want to keep your conceal setting, put this line to your vim dotfile:
-```
-let g:indentLine_setConceal = 0
-```
-
-See the [VIM Reference Manual](http://vimdoc.sourceforge.net/htmldoc/version7.html#new-conceal) for more information on the `conceal` feature.
-
-
-**Disable by default**
-```
-let g:indentLine_enabled = 0
-```
-
-### Commands
-`:IndentLinesToggle` toggles lines on and off.
-
-### Font patching
-If you find all the standard unicode and ASCII characters too obtrusive, you might consider patching your font with the [indentLine-dotted-guide.eps][glyph] glyph provided.  [FontForge][fontforge] makes the process amazingly simple:
-
- 1. Download and install FontForge.
- 2. Locate and open your terminal/gVim font.
- 3. Open the font in FontForge, choose __Goto__ from the __View__ menu and select _Private Use Area_ from the drop down box.
- 4. In the private use area, locate a blank spot for the glyph. Make a note of the code, e.g. `U+E0A3`.
- 5. Double-click the selected code point to open the font drawing tool.
- 6. From the __File__ menu, select __Import...__ and locate the _indentLine-dotted-guide.eps_ file.
- 7. Once imported, choose __File__ -> __Generate Fonts__ and choose a location and file type for the new font.
-
-Once completed, your new font will contain the more subtle dotted guide and all you have to do is set that glyph to `g:indentLine_char` in your `.vimrc` file.
-
-[glyph]: glyph/indentLine-dotted-guide.eps
-[fontforge]: http://fontforge.github.io/
-
-## Self promotion
-If you think this script is helpful, follow the [GitHub repository][repository], and don't forget to vote for it on Vim.org! ([vimscript #4354][script]).
-
-[pathogen]: https://github.com/tpope/vim-pathogen
-[vundle]: https://github.com/gmarik/vundle
-[repository]: https://github.com/Yggdroot/indentLine
-[script]: http://www.vim.org/scripts/script.php?script_id=4354
-
-## Screenshots
-
-### Vertical bars
-![Screenshot](http://i.imgur.com/KVi0T.jpg)
-
-### Patched font
-![Screenshot](http://i.imgur.com/2ZA7oaZ.png)
-
-### Leading Spaces
-![Screenshot](http://i.imgur.com/tLYkb79.png)
-
-![Screenshot](http://i.imgur.com/07Atrrs.png)
-
-## License
-- MIT
-- 知道vim normal模式下使用`gg`命令**后果**的人禁止使用。
