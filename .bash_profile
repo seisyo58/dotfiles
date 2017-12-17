@@ -8,5 +8,5 @@ tmux
 else
 curl wttr.in
 fi
-alias ls='ls --color=auto'
+source ~/.bashrc
 fi

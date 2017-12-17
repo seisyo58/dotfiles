@@ -51,6 +51,8 @@ let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 	endif
 
 	"色設定
-	set background=dark
 	colorscheme hybrid
 	syntax on
+	let g:molokai_original = 1
+	let g:rehash256 = 1
+	set background=dark
