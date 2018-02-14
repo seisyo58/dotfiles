@@ -8,5 +8,6 @@ tmux
 else
 curl wttr.in
 fi
+export PATH="~/convenient_command:$PATH"
 source ~/.bashrc
 fi

@@ -1,3 +1,5 @@
+"文字コード指定
+set encoding=utf-8
 "自動補完
 set completeopt=menuone
 for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
@@ -51,7 +53,7 @@ let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 	endif
 
 	"色設定
-	colorscheme moneyforward
+	colorscheme molokai
 	syntax on
 	let g:molokai_original = 1
 	let g:rehash256 = 1
